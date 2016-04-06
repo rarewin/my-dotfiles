@@ -1,0 +1,16 @@
+defencoding utf8
+escape ^z^z
+caption always "%{=b wm}%c %{= wg} %-w%{=bu dr}%n %t%{-}%+w"
+
+defbce "on"
+
+term xterm-256color
+#term $TERM
+startup_message off
+
+bind 'd' setenv XAUTHORITY
+bind w windowlist -b
+
+zombie ' '
+
+defscrollback 2048
