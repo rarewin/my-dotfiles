@@ -97,11 +97,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 12
-                               :weight normal
-                               :width normal
-                               :powerline-scale 1.1)
+   dotspacemacs-default-font '("Ricty Diminished"
+			       :weight bold)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -204,22 +201,6 @@ user code."
   ;; C-hはバックスペース.
   (global-set-key "\C-h" 'backward-delete-char)
   (global-set-key "\C-j" nil)
-
-  (cond (window-system
-       (set-fontset-font (frame-parameter nil 'font)
-                         'japanese-jisx0208
-                         '("ＭＳ ゴシック" . "unicode-bmp")
-                         )
-       (set-fontset-font (frame-parameter nil 'font)
-                         'katakana-jisx0201
-                         '("ＭＳ ゴシック" . "unicode-bmp")
-                         )
-
-       (setq face-font-rescale-alist
-	     '((".*ＭＳ ゴシック.*" . 1.33)
-	       (".*Source Code Pro.*" . 1.0)
-	       ("-cdac$" . 1.5)))
-      ))
 
   ;; C-aを素敵挙動に.
   (define-key global-map "\C-a"
