@@ -230,7 +230,11 @@ layers configuration. You are free to put any user code."
 
   ;; SKK (動作してる?)
   ;; (setq skk-byte-compile-init-file t)
-  (setq default-input-method "W32-IME")
+  (if (eq system-type 'windows-nt)
+      (setq default-input-method "W32-IME"))
+
+  (if (eq system-type 'gnu/linux)
+      (setq default-input-method "japanese-skk"))
 
   ;; (add-hook 'isearch-mode-hook 'skk-isearch-mode-setup)
   ;; (add-hook 'isearch-mode-end-hook 'skk-isearch-mode-cleanup)
