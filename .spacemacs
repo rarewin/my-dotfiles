@@ -221,6 +221,10 @@ user code."
 
   (setq dotspacemacs-elpa-https nil)
 
+  ;; Markdown (only for windows)
+  (if (eq system-type 'windows-nt)
+      (setq markdown-command "c:/msys32/usr/bin/perl.exe c:/Programs/emacs/bin/Markdown.pl")
+    )
   )
 
 (defun dotspacemacs/user-config ()
