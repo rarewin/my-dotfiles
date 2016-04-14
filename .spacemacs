@@ -223,8 +223,10 @@ user code."
 
   ;; Markdown (only for windows)
   (if (eq system-type 'windows-nt)
-      (setq markdown-command "c:/msys32/usr/bin/perl.exe c:/Programs/emacs/bin/Markdown.pl")
+      (setq markdown-command "perl.exe c:/msys32/usr/bin/markdown")
     )
+  (setq markdown-css-paths '("http://bootswatch.com/cerulean/bootstrap.css"))
+
   )
 
 (defun dotspacemacs/user-config ()
