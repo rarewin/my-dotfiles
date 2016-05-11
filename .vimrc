@@ -26,3 +26,5 @@ endif
 " カーソル行の強調表示.
 set cursorline
 
+" バックアップ不要.
+set nobackup
