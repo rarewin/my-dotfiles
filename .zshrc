@@ -8,6 +8,7 @@ SAVEHIST=1000000
 
 # auto complete
 autoload -U compinit; compinit
+zstyle ':completion:*:default' menu select=1
 
 # color
 autoload -Uz colors; colors
