@@ -13,7 +13,8 @@ autoload -U compinit; compinit
 autoload -Uz colors; colors
 
 # prompt
-autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git
+## Ref: <http://d.hatena.ne.jp/uasi/20091025/1256458798>
+autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
 
 function rprompt-git-current-branch {
         local name st color gitdir action
