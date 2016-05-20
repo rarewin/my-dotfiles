@@ -18,7 +18,6 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     javascript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -44,6 +43,8 @@ values."
      python
      ruby
      html
+     javascript
+     go
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -198,6 +199,9 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
+
+(setq url-proxy-services
+   '(("no_proxy" . "^\\(localhost\\|127\\.0\\..*\\)")))
 
   ;; C-hはバックスペース.
   (global-set-key "\C-h" 'backward-delete-char)
