@@ -200,8 +200,8 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
 
-(setq url-proxy-services
-   '(("no_proxy" . "^\\(localhost\\|127\\.0\\..*\\)")))
+  (setq url-proxy-services
+	'(("no_proxy" . "^\\(localhost\\|127\\.0\\..*\\)")))
 
   ;; C-hはバックスペース.
   (global-set-key "\C-h" 'backward-delete-char)
@@ -226,11 +226,48 @@ user code."
 
   (setq dotspacemacs-elpa-https nil)
 
-  ;; Markdown (only for windows)
+  ;; Markdown command (only for windows)
   (if (eq system-type 'windows-nt)
-      (setq markdown-command "perl.exe c:/msys32/usr/bin/markdown")
+      (setq markdown-command "\"c:\\Program Files\\nodejs\\node\" C:/Users/katsu/AppData/Roaming/npm/node_modules/marked/bin/marked")
     )
+
+  ;; style sheet for Markdown
   (setq markdown-css-paths '("http://bootswatch.com/cerulean/bootstrap.css"))
+
+  ;; GFM (GitHub Flavored Markdown)
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
+
+  ;; windowの大きさを変更する.
+  ;; <http://d.hatena.ne.jp/mooz/20100119/p1>
+  (defun window-resizer ()
+    "Control window size and position."
+    (interactive)
+    (let ((window-obj (selected-window))
+	  (current-width (window-width))
+	  (current-height (window-height))
+	  (dx (if (= (nth 0 (window-edges)) 0) 1
+		-1))
+	  (dy (if (= (nth 1 (window-edges)) 0) 1
+		-1))
+	  c)
+      (catch 'end-flag
+	(while t
+	  (message "size[%dx%d]"
+		   (window-width) (window-height))
+	  (setq c (read-char))
+	  (cond ((= c ?l)
+		 (enlarge-window-horizontally dx))
+		((= c ?h)
+		 (shrink-window-horizontally dx))
+		((= c ?j)
+		 (enlarge-window dy))
+		((= c ?k)
+		 (shrink-window dy))
+		;; otherwise
+		(t
+		 (message "Quit")
+		 (throw 'end-flag t)))))))
+  (global-set-key "\C-c\C-r" 'window-resizer)
 
   )
 
@@ -239,8 +276,7 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
 
-  ;; SKK (動作してる?)
-  ;; (setq skk-byte-compile-init-file t)
+  ;; IME
   (if (eq system-type 'windows-nt)
       (setq default-input-method "W32-IME"))
 
