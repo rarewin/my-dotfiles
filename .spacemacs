@@ -203,11 +203,11 @@ user code."
   (setq url-proxy-services
 	'(("no_proxy" . "^\\(localhost\\|127\\.0\\..*\\)")))
 
-  ;; C-hã¯ãƒãƒƒã‚¯ã‚¹ãƒšãƒ¼ã‚¹.
+  ;; C-h‚ÍƒoƒbƒNƒXƒy[ƒX.
   (global-set-key "\C-h" 'backward-delete-char)
   (global-set-key "\C-j" nil)
 
-  ;; C-aã‚’ç´ æ•µæŒ™å‹•ã«.
+  ;; C-a‚ğ‘f“G‹““®‚É.
   (define-key global-map "\C-a"
     #'(lambda (arg)
         (interactive "p")
@@ -215,12 +215,12 @@ user code."
             (back-to-indentation)
           (beginning-of-line arg))))
 
-  ;; ESCã¯Metaã‚­ãƒ¼ç›¸å½“ã§ã„ã„ã‚“ã ã‚ˆ!!
+  ;; ESC‚ÍMetaƒL[‘Š“–‚Å‚¢‚¢‚ñ‚¾‚æ!!
   (add-hook 'holy-mode-hook (lambda () (define-key evil-emacs-state-map [escape] nil)))
 
-  ;; C ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®æ›¸å¼
+  ;; C ƒvƒƒOƒ‰ƒ€‚Ì‘®
   (defun my-c-mode-common-hook ()
-    (c-set-style "linux") (setq indent-tabs-mode t) ;linux å¼ãŒã„ã„ã¨ã
+    (c-set-style "linux") (setq indent-tabs-mode t) ;linux ®‚ª‚¢‚¢‚Æ‚«
     )
   (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
@@ -237,7 +237,7 @@ user code."
   ;; GFM (GitHub Flavored Markdown)
   (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
 
-  ;; windowã®å¤§ãã•ã‚’å¤‰æ›´ã™ã‚‹.
+  ;; window‚Ì‘å‚«‚³‚ğ•ÏX‚·‚é.
   ;; <http://d.hatena.ne.jp/mooz/20100119/p1>
   (defun window-resizer ()
     "Control window size and position."
@@ -296,24 +296,24 @@ layers configuration. You are free to put any user code."
   ;; (require 'twittering-mode)
   ;; (setq twittering-use-master-password t)
 
-  ;; ã‚¿ãƒ–å¹….
+  ;; ƒ^ƒu•.
   (setq-default tab-width 8)
 
-  ;; è¡Œæœ«ã®æŠ˜ã‚Šè¿”ã—.
+  ;; s––‚ÌÜ‚è•Ô‚µ.
   (setq-default truncate-partial-width-windows t)
   (setq-default truncate-lines t)
 
-  ;; ãƒãƒ¼ãƒ‰ã‚¿ãƒ–ã‚’ä½¿ã†.
+  ;; ƒn[ƒhƒ^ƒu‚ğg‚¤.
   (setq-default indent-tabs-mode t)
 
   ;; emacs-server
   (server-start)
 
-  ;; ã‚¿ãƒ–å¹…å¤‰æ›´é–¢æ•°
+  ;; ƒ^ƒu••ÏXŠÖ”
   (defun set-aurora-tab-width (num &optional local redraw)
-    "ã‚¿ãƒ–å¹…ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚ã‚¿ãƒ–5ã¨ã‹ã‚¿ãƒ–20ã‚‚è¨­å®šã§ããŸã‚Šã—ã¾ã™ã€‚
-localãŒ non-nilã®å ´åˆã¯ã€ã‚«ãƒ¬ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã§ã®ã¿æœ‰åŠ¹ã«ãªã‚Šã¾ã™ã€‚
-redrawãŒ non-nilã®å ´åˆã¯ã€Windowã‚’å†æç”»ã—ã¾ã™ã€‚"
+    "ƒ^ƒu•‚ğƒZƒbƒg‚µ‚Ü‚·Bƒ^ƒu5‚Æ‚©ƒ^ƒu20‚àİ’è‚Å‚«‚½‚è‚µ‚Ü‚·B
+local‚ª non-nil‚Ìê‡‚ÍAƒJƒŒƒ“ƒgƒoƒbƒtƒ@‚Å‚Ì‚İ—LŒø‚É‚È‚è‚Ü‚·B
+redraw‚ª non-nil‚Ìê‡‚ÍAWindow‚ğÄ•`‰æ‚µ‚Ü‚·B"
     (interactive "nTab Width: ")
     (when local
       (make-local-variable 'tab-width)
