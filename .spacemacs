@@ -42,6 +42,7 @@ values."
      java
      python
      ruby
+     rust
      html
      javascript
      go
