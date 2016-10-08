@@ -310,6 +310,10 @@ layers configuration. You are free to put any user code."
   ;; emacs-server
   (server-start)
 
+  ;; 行番号表示.
+  (require 'linum)
+  (global-linum-mode)
+
   ;; タブ幅変更関数
   (defun set-aurora-tab-width (num &optional local redraw)
     "タブ幅をセットします。タブ5とかタブ20も設定できたりします。
