@@ -225,6 +225,10 @@ user code."
     )
   (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
+  ;; skk
+  (add-hook 'isearch-mode-hook 'skk-isearch-mode-setup)
+  (add-hook 'isearch-mode-end-hook 'skk-isearch-mode-cleanup)
+
   (setq dotspacemacs-elpa-https nil)
 
   ;; Markdown command (only for windows)
@@ -270,6 +274,17 @@ user code."
 		 (throw 'end-flag t)))))))
   (global-set-key "\C-c\C-r" 'window-resizer)
 
+  ;; web-mode設定.
+  (defun my-web-mode-hook ()
+    "Hook for Web mode."
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-css-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)
+    (setq web-mode-indent-style 2)
+    (setq indent-tabs-mode nil)
+    )
+  (add-hook 'web-mode-hook 'my-web-mode-hook)
+
   )
 
 (defun dotspacemacs/user-config ()
@@ -283,9 +298,6 @@ layers configuration. You are free to put any user code."
 
   (if (eq system-type 'gnu/linux)
       (setq default-input-method "japanese-skk"))
-
-  ;; (add-hook 'isearch-mode-hook 'skk-isearch-mode-setup)
-  ;; (add-hook 'isearch-mode-end-hook 'skk-isearch-mode-cleanup)
 
   ;; elscreen
   ;; (load "elscreen")
@@ -313,16 +325,6 @@ layers configuration. You are free to put any user code."
   ;; 行番号表示.
   (require 'linum)
   (global-linum-mode)
-
-  ;; web-modeのインデントを設定.
-  (defun my-web-mode-hook ()
-    "Hook for Web mode."
-    (setq indent-tabs-mode nil)
-    (setq web-mode-markup-indent-offset 2)
-    (setq web-mode-css-indent-offset 2)
-    (setq web-mode-code-indent-offset 2)
-    )
-  (add-hook 'web-mode-hook 'my-web-mode-hook)
 
   ;; タブ幅変更関数
   (defun set-aurora-tab-width (num &optional local redraw)
