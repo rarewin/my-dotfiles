@@ -314,6 +314,16 @@ layers configuration. You are free to put any user code."
   (require 'linum)
   (global-linum-mode)
 
+  ;; web-modeのインデントを設定.
+  (defun my-web-mode-hook ()
+    "Hook for Web mode."
+    (setq indent-tabs-mode nil)
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-css-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)
+    )
+  (add-hook 'web-mode-hook 'my-web-mode-hook)
+
   ;; タブ幅変更関数
   (defun set-aurora-tab-width (num &optional local redraw)
     "タブ幅をセットします。タブ5とかタブ20も設定できたりします。
