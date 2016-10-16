@@ -242,6 +242,12 @@ user code."
   ;; GFM (GitHub Flavored Markdown)
   (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
 
+  ;; web-mode
+  (setq web-mode-engines-alist
+	'(("django" . "\\.tpl.html\\'"))       ;; jinja2
+	)
+
+
   ;; window‚Ì‘å‚«‚³‚ğ•ÏX‚·‚é.
   ;; <http://d.hatena.ne.jp/mooz/20100119/p1>
   (defun window-resizer ()
@@ -284,6 +290,14 @@ user code."
     (setq indent-tabs-mode nil)
     )
   (add-hook 'web-mode-hook 'my-web-mode-hook)
+
+  ;; python-modeİ’è.
+  (defun my-python-mode-hook ()
+    "Hook for Python mode."
+    (setq python-indent-guess-indent-offset 4)
+    (setq indent-tabs-mode nil)
+    )
+  (add-hook 'python-mode-hook 'my-python-mode-hook)
 
   )
 
