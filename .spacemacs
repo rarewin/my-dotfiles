@@ -226,8 +226,8 @@ user code."
   (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
   ;; skk
-  (add-hook 'isearch-mode-hook 'skk-isearch-mode-setup)
-  (add-hook 'isearch-mode-end-hook 'skk-isearch-mode-cleanup)
+  ;(add-hook 'isearch-mode-hook 'skk-isearch-mode-setup)
+  ;(add-hook 'isearch-mode-end-hook 'skk-isearch-mode-cleanup)
 
   (setq dotspacemacs-elpa-https nil)
 
