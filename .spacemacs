@@ -53,7 +53,10 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages
+   '(
+     elscreen
+     )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -203,6 +206,9 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
 
+  ;; for elscreen
+  (setq evil-toggle-key "")
+
   (setq url-proxy-services
 	'(("no_proxy" . "^\\(localhost\\|127\\.0\\..*\\)")))
 
@@ -307,6 +313,9 @@ user code."
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+
+  ;; elscreen
+  (elscreen-start)
 
   ;; IME
   (if (eq system-type 'windows-nt)
