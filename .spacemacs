@@ -370,6 +370,11 @@ redraw‚ª non-nil‚Ìê‡‚ÍAWindow‚ğÄ•`‰æ‚µ‚Ü‚·B"
 	  (car (let ((value (list 0)))
 		 (dolist (element tab-stop-list value)
 		   (setq value (if (< element (current-column)) (cons element value) value)))))))))
+
+  ;; transparent window
+  (if window-system (progn
+		      (set-frame-parameter nil 'alpha 90) ;“§–¾“x
+		      ))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
