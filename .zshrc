@@ -53,6 +53,27 @@ function rprompt-git-current-branch {
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
 setopt prompt_subst
 
+
+## for zplug
+source ~/.zplug/init.zsh
+
+## Supports oh-my-zsh plugins and the like
+#zplug "plugins/git",   from:oh-my-zsh
+
+# colorful CLI
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
+
 PROMPT='%n@%m%F{green}%#%F{white} '
 RPROMPT='[`rprompt-git-current-branch`%~]'
 
