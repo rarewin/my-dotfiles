@@ -63,6 +63,16 @@ source ~/.zplug/init.zsh
 # colorful CLI
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
+# fzf
+zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
+# zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
+
+# enhancd
+zplug "b4b4r07/enhancd", use:init.sh
+
+# cd-gitroot
+zplug "mollifier/cd-gitroot"
+
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
