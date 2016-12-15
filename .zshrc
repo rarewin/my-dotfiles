@@ -23,7 +23,7 @@ source ~/.zplug/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
 # fzf
-zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
+# zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
 # zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 
 # enhancd
