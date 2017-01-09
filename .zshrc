@@ -22,12 +22,15 @@ source ~/.zplug/init.zsh
 # colorful CLI
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
+# zsh-completions
+zplug "zsh-users/zsh-completions"
+
 # fzf
 # zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
 # zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 
 # enhancd
-zplug "b4b4r07/enhancd", use:init.sh
+# zplug "b4b4r07/enhancd", use:init.sh
 
 # cd-gitroot
 zplug "mollifier/cd-gitroot"
