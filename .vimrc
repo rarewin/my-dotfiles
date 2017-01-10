@@ -28,3 +28,8 @@ set cursorline
 
 " バックアップ不要.
 set nobackup
+
+" IMEがonになるのをやめる
+set iminsert=0
+set imsearch=-1
+
