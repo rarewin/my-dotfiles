@@ -212,11 +212,11 @@ user code."
   (setq url-proxy-services
 	'(("no_proxy" . "^\\(localhost\\|127\\.0\\..*\\)")))
 
-  ;; C-h‚ÍƒoƒbƒNƒXƒy[ƒX.
+  ;; C-hã¯ãƒãƒƒã‚¯ã‚¹ãƒšãƒ¼ã‚¹.
   (global-set-key "\C-h" 'backward-delete-char)
   (global-set-key "\C-j" nil)
 
-  ;; C-a‚ğ‘f“G‹““®‚É.
+  ;; C-aã‚’ç´ æ•µæŒ™å‹•ã«.
   (define-key global-map "\C-a"
     #'(lambda (arg)
         (interactive "p")
@@ -224,12 +224,12 @@ user code."
             (back-to-indentation)
           (beginning-of-line arg))))
 
-  ;; ESC‚ÍMetaƒL[‘Š“–‚Å‚¢‚¢‚ñ‚¾‚æ!!
+  ;; ESCã¯Metaã‚­ãƒ¼ç›¸å½“ã§ã„ã„ã‚“ã ã‚ˆ!!
   (add-hook 'holy-mode-hook (lambda () (define-key evil-emacs-state-map [escape] nil)))
 
-  ;; C ƒvƒƒOƒ‰ƒ€‚Ì‘®
+  ;; C ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®æ›¸å¼
   (defun my-c-mode-common-hook ()
-    (c-set-style "linux") (setq indent-tabs-mode t) ;linux ®‚ª‚¢‚¢‚Æ‚«
+    (c-set-style "linux") (setq indent-tabs-mode t) ;linux å¼ãŒã„ã„ã¨ã
     )
   (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
@@ -256,7 +256,7 @@ user code."
 	)
 
 
-  ;; window‚Ì‘å‚«‚³‚ğ•ÏX‚·‚é.
+  ;; windowã®å¤§ãã•ã‚’å¤‰æ›´ã™ã‚‹.
   ;; <http://d.hatena.ne.jp/mooz/20100119/p1>
   (defun window-resizer ()
     "Control window size and position."
@@ -288,7 +288,7 @@ user code."
 		 (throw 'end-flag t)))))))
   (global-set-key "\C-c\C-r" 'window-resizer)
 
-  ;; web-modeİ’è.
+  ;; web-modeè¨­å®š.
   (defun my-web-mode-hook ()
     "Hook for Web mode."
     (setq web-mode-markup-indent-offset 2)
@@ -299,7 +299,7 @@ user code."
     )
   (add-hook 'web-mode-hook 'my-web-mode-hook)
 
-  ;; python-modeİ’è.
+  ;; python-modeè¨­å®š.
   (defun my-python-mode-hook ()
     "Hook for Python mode."
     (setq python-indent-guess-indent-offset 4)
@@ -334,28 +334,28 @@ layers configuration. You are free to put any user code."
   ;; (require 'twittering-mode)
   ;; (setq twittering-use-master-password t)
 
-  ;; ƒ^ƒu•.
+  ;; ã‚¿ãƒ–å¹….
   (setq-default tab-width 8)
 
-  ;; s––‚ÌÜ‚è•Ô‚µ.
+  ;; è¡Œæœ«ã®æŠ˜ã‚Šè¿”ã—.
   (setq-default truncate-partial-width-windows t)
   (setq-default truncate-lines t)
 
-  ;; ƒn[ƒhƒ^ƒu‚ğg‚¤.
+  ;; ãƒãƒ¼ãƒ‰ã‚¿ãƒ–ã‚’ä½¿ã†.
   (setq-default indent-tabs-mode t)
 
   ;; emacs-server
   (server-start)
 
-  ;; s”Ô†•\¦.
+  ;; è¡Œç•ªå·è¡¨ç¤º.
   (require 'linum)
   (global-linum-mode)
 
-  ;; ƒ^ƒu••ÏXŠÖ”
+  ;; ã‚¿ãƒ–å¹…å¤‰æ›´é–¢æ•°
   (defun set-aurora-tab-width (num &optional local redraw)
-    "ƒ^ƒu•‚ğƒZƒbƒg‚µ‚Ü‚·Bƒ^ƒu5‚Æ‚©ƒ^ƒu20‚àİ’è‚Å‚«‚½‚è‚µ‚Ü‚·B
-local‚ª non-nil‚Ìê‡‚ÍAƒJƒŒƒ“ƒgƒoƒbƒtƒ@‚Å‚Ì‚İ—LŒø‚É‚È‚è‚Ü‚·B
-redraw‚ª non-nil‚Ìê‡‚ÍAWindow‚ğÄ•`‰æ‚µ‚Ü‚·B"
+    "ã‚¿ãƒ–å¹…ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚ã‚¿ãƒ–5ã¨ã‹ã‚¿ãƒ–20ã‚‚è¨­å®šã§ããŸã‚Šã—ã¾ã™ã€‚
+localãŒ non-nilã®å ´åˆã¯ã€ã‚«ãƒ¬ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã§ã®ã¿æœ‰åŠ¹ã«ãªã‚Šã¾ã™ã€‚
+redrawãŒ non-nilã®å ´åˆã¯ã€Windowã‚’å†æç”»ã—ã¾ã™ã€‚"
     (interactive "nTab Width: ")
     (when local
       (make-local-variable 'tab-width)
@@ -384,7 +384,7 @@ redraw‚ª non-nil‚Ìê‡‚ÍAWindow‚ğÄ•`‰æ‚µ‚Ü‚·B"
 
   ;; transparent window
   (if window-system (progn
-		      (set-frame-parameter nil 'alpha 90) ;“§–¾“x
+		      (set-frame-parameter nil 'alpha 90) ;é€æ˜åº¦
 		      ))
   )
 
