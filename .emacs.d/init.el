@@ -23,9 +23,10 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
-;; disable menu-ba & tool-bar
+;; hide menu-bar, tool-bar, and scroll-bar
 (menu-bar-mode 0)
 (tool-bar-mode 0)
+(scroll-bar-mode 0)
 
 ;; format for C programs
 (defun my-c-mode-common-hook ()
