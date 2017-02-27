@@ -4,20 +4,14 @@
              '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
-(global-set-key (kbd "<f5>") 'revert-buffer)          ;; f5 - revert buffer
 
-(setq url-proxy-services
-      '(("no_proxy" . "^\\(localhost\\|127\\.0\\..*\\|baobab\\)")))
+;; global key settings
+(global-set-key (kbd "<f5>") 'revert-buffer)   ; f5 - revert buffer
+(global-set-key "\C-h" 'backward-delete-char)  ; C-h should be backspace!
+(global-set-key "\C-j" nil)                    ; C-j
+(global-set-key (kbd "M-x") 'smex)
 
-;; no backup by Emacs
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-
-;; C-h should be backspace!
-(global-set-key "\C-h" 'backward-delete-char)
-(global-set-key "\C-j" nil)
-
-;; C-aを素敵挙動に.
+;; make C-a lovely
 (define-key global-map "\C-a"
   #'(lambda (arg)
       (interactive "p")
@@ -25,19 +19,19 @@
 	  (back-to-indentation)
 	(beginning-of-line arg))))
 
-;; C プログラムの書式
+;; no backup by Emacs
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
+;; disable menu-ba & tool-bar
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+
+;; format for C programs
 (defun my-c-mode-common-hook ()
-  (c-set-style "linux") (setq indent-tabs-mode t) ;linux 式がいいとき
+  (c-set-style "linux") (setq indent-tabs-mode t) ;linux style
   )
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
-
-;; Markdown command (only for windows)
-(if (eq system-type 'windows-nt)
-    (setq markdown-command "\"c:\\Program Files\\nodejs\\node\" ${USERPROFILE}/AppData/Roaming/npm/node_modules/marked/bin/marked")
-  )
-
-;; style sheet for Markdown
-(setq markdown-css-paths '("http://bootswatch.com/cerulean/bootstrap.css"))
 
 ;; GFM (GitHub Flavored Markdown)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
@@ -47,7 +41,6 @@
       '(("django" . "\\.tpl.html\\'"))       ;; jinja2
       )
 
-;; web-mode設定.
 (defun my-web-mode-hook ()
   "Hook for Web mode."
   (setq web-mode-markup-indent-offset 2)
@@ -58,7 +51,7 @@
   )
 (add-hook 'web-mode-hook 'my-web-mode-hook)
 
-;; python-mode設定.
+;; python-mode
 (defun my-python-mode-hook ()
   "Hook for Python mode."
   (setq python-indent-guess-indent-offset 4)
@@ -73,11 +66,6 @@
 (load "elscreen")
 (setq elscreen-prefix-key (kbd "C-z"))
 (elscreen-start)
-
-;; Twittering-mode
-;; (add-to-list 'load-path "~/local/elisp/twittering-mode/")
-;; (require 'twittering-mode)
-;; (setq twittering-use-master-password t)
 
 ;; タブ幅.
 (setq-default tab-width 8)
@@ -126,6 +114,23 @@ redrawが non-nilの場合は、Windowを再描画します。"
 		    (set-frame-parameter nil 'alpha 90) ;透明度
 		    ))
 
+;; Fonts
+(let* ((size 10)
+       (asciifont "Ricty Diminished Discord")
+       (jpfont "Ricty Diminished Discord")
+       (h (* size 10))
+       (fontspec (font-spec :family asciifont))
+       (jp-fontspec (font-spec :family jpfont)))
+  (set-face-attribute 'default nil :family asciifont :height h)
+  (set-fontset-font nil 'japanese-jisx0213.2004-1 jp-fontspec)
+  (set-fontset-font nil 'japanese-jisx0213-2 jp-fontspec)
+  (set-fontset-font nil 'katakana-jisx0201 jp-fontspec)
+  (set-fontset-font nil '(#x0080 . #x024F) fontspec) 
+  (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
+
+;; start emacs-server
+(server-start)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -134,15 +139,7 @@ redrawが non-nilの場合は、Windowを再描画します。"
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(custom-enabled-themes (quote (tango-dark)))
- '(package-selected-packages (quote (ein wanderlust ddskk elscreen org)))
+ '(package-selected-packages
+   (quote
+    (twittering-mode mhc smex yatex auto-complete ein wanderlust ddskk elscreen org)))
  '(show-paren-mode t))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Ricty Diminished Discord" :foundry "outline" :slant normal :weight normal :height 98 :width normal)))))
-
-;; emacs-server
-(server-start)
