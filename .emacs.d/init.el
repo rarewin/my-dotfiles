@@ -9,7 +9,9 @@
 (global-set-key (kbd "<f5>") 'revert-buffer)   ; f5 - revert buffer
 (global-set-key "\C-h" 'backward-delete-char)  ; C-h should be backspace!
 (global-set-key "\C-j" nil)                    ; C-j
-(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key "\C-x\C-f" 'counsel-find-file)
+
 
 ;; make C-a lovely
 (define-key global-map "\C-a"
@@ -142,5 +144,11 @@ redrawが non-nilの場合は、Windowを再描画します。"
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (twittering-mode mhc smex yatex auto-complete ein wanderlust ddskk elscreen org)))
+    (counsel twittering-mode mhc smex yatex auto-complete ein wanderlust ddskk elscreen org)))
  '(show-paren-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
