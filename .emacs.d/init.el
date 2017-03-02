@@ -80,6 +80,9 @@
 ;; ハードタブを使う.
 (setq-default indent-tabs-mode t)
 
+;; high light trailing white space
+(setq-default show-trailing-whitespace t)
+
 ;; 行番号表示.
 (require 'linum)
 (global-linum-mode)
