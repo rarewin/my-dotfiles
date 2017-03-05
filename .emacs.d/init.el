@@ -131,8 +131,12 @@ redrawが non-nilの場合は、Windowを再描画します。"
   (set-fontset-font nil 'japanese-jisx0213.2004-1 jp-fontspec)
   (set-fontset-font nil 'japanese-jisx0213-2 jp-fontspec)
   (set-fontset-font nil 'katakana-jisx0201 jp-fontspec)
-  (set-fontset-font nil '(#x0080 . #x024F) fontspec) 
+  (set-fontset-font nil '(#x0080 . #x024F) fontspec)
   (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
+
+;; theme
+(require 'moe-theme)
+(moe-dark)
 
 ;; start emacs-server
 (server-start)
@@ -144,10 +148,9 @@ redrawが non-nilの場合は、Windowを再描画します。"
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
- '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (counsel twittering-mode mhc smex yatex auto-complete ein wanderlust ddskk elscreen org)))
+    (moe-theme counsel twittering-mode mhc smex yatex auto-complete ein wanderlust ddskk elscreen org)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
