@@ -138,6 +138,14 @@ redrawが non-nilの場合は、Windowを再描画します。"
 (require 'moe-theme)
 (moe-dark)
 
+;; org-babel
+;; iPython
+(require 'ob-ipython)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ipython . t)
+   ))
+
 ;; start emacs-server
 (server-start)
 
@@ -150,7 +158,7 @@ redrawが non-nilの場合は、Windowを再描画します。"
    [default default default italic underline success warning error])
  '(package-selected-packages
    (quote
-    (moe-theme counsel twittering-mode mhc smex yatex auto-complete ein wanderlust ddskk elscreen org)))
+    (ob-ipython moe-theme counsel twittering-mode mhc smex yatex auto-complete ein wanderlust ddskk elscreen org)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
