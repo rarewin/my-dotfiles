@@ -138,14 +138,24 @@ redrawが non-nilの場合は、Windowを再描画します。"
 (require 'moe-theme)
 (moe-dark)
 
-;; org-babel
-;; iPython
+;; for org-mode
+(require 'ox-asciidoc)
+(require 'ox-gfm)
+(require 'ox-rst)
+(require 'ox-textile)
+
 (require 'ob-ipython)
 (require 'ob-ruby)
+(require 'ob-go)
+(require 'ob-kotlin)
+(require 'ob-swift)
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((ipython . t)
-   (irb . t)
+   (go . t)
+   (kotlin . t)
+   (swift . t)
+   (ruby . t)
    ))
 
 ;; start emacs-server
@@ -160,7 +170,7 @@ redrawが non-nilの場合は、Windowを再描画します。"
    [default default default italic underline success warning error])
  '(package-selected-packages
    (quote
-    (company-inf-ruby inf-ruby migemo go-mode kotlin-mode ob-go ob-kotlin ob-swift rust-mode swift-mode swift3-mode ob-ipython moe-theme counsel twittering-mode mhc smex yatex auto-complete ein wanderlust ddskk elscreen org)))
+    (ox-asciidoc ox-gfm ox-rst ox-textile cargo company-inf-ruby inf-ruby migemo go-mode kotlin-mode ob-go ob-kotlin ob-swift rust-mode swift-mode swift3-mode ob-ipython moe-theme counsel twittering-mode mhc smex yatex auto-complete ein wanderlust ddskk elscreen org)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
