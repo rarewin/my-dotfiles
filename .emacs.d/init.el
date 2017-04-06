@@ -62,6 +62,37 @@
   )
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 
+;; kotlin-mode
+(defun my-kotolin-mode-hook ()
+  "Hook for Kotlin mode."
+  (setq kotlin-tab-width 4)
+  (setq indent-tabs-mode nil)
+  )
+(add-hook 'kotlin-mode-hook 'my-kotolin-mode-hook)
+
+;; YaTeX-mode
+(add-to-list 'auto-mode-alist '("\\.tex" . yatex-mode))
+
+;; rust-mode
+;; see <http://keens.github.io/blog/2016/12/29/kizuitararustnokankyoukouchikugakanarirakuninatteta/>
+;;; rust-modeでrust-format-on-saveをtにすると自動でrustfmtが走る
+(eval-after-load "rust-mode"
+  '(setq-default rust-format-on-save t))
+;;; rustのファイルを編集するときにracerとflycheckを起動する
+(add-hook 'rust-mode-hook (lambda ()
+                            (racer-mode)
+                            (flycheck-rust-setup)))
+;;; racerのeldocサポートを使う
+(add-hook 'racer-mode-hook #'eldoc-mode)
+;;; racerの補完サポートを使う
+(add-hook 'racer-mode-hook (lambda ()
+                             (company-mode)
+                             ;;; この辺の設定はお好みで
+                             (set (make-variable-buffer-local 'company-idle-delay) 0.1)
+                             (set (make-variable-buffer-local 'company-minimum-prefix-length) 0)))
+
+
+
 ;; IME
 (setq default-input-method "japanese-skk")
 
@@ -70,37 +101,37 @@
 (setq elscreen-prefix-key (kbd "C-z"))
 (elscreen-start)
 
-;; $B%?%VI}(B.
+;; タブ幅.
 (setq-default tab-width 8)
 
-;; $B9TKv$N@^$jJV$7(B.
+;; 行末の折り返し.
 (setq-default truncate-partial-width-windows t)
 (setq-default truncate-lines t)
 
-;; $B%O!<%I%?%V$r;H$&(B.
+;; ハードタブを使う.
 (setq-default indent-tabs-mode t)
 
 ;; high light trailing white space
 (setq-default show-trailing-whitespace t)
 
-;; $B9THV9fI=<((B.
+;; 行番号表示.
 (require 'linum)
 (global-linum-mode)
 
-;; $B3g8L$rI=<((B.
+;; 括弧を表示.
 (show-paren-mode 1)
 
-;; $B8=:_9T$N%O%$%i%$%H(B.
+;; 現在行のハイライト.
 (global-hl-line-mode t)
 
-;; $BA*BrHO0O$N%O%$%i%$%H(B.
+;; 選択範囲のハイライト.
 (transient-mark-mode t)
 
-;; $B%?%VI}JQ994X?t(B
+;; タブ幅変更関数
 (defun set-aurora-tab-width (num &optional local redraw)
-  "$B%?%VI}$r%;%C%H$7$^$9!#%?%V(B5$B$H$+%?%V(B20$B$b@_Dj$G$-$?$j$7$^$9!#(B
-local$B$,(B non-nil$B$N>l9g$O!"%+%l%s%H%P%C%U%!$G$N$_M-8z$K$J$j$^$9!#(B
-redraw$B$,(B non-nil$B$N>l9g$O!"(BWindow$B$r:FIA2h$7$^$9!#(B"
+  "タブ幅をセットします。タブ5とかタブ20も設定できたりします。
+localが non-nilの場合は、カレントバッファでのみ有効になります。
+redrawが non-nilの場合は、Windowを再描画します。"
   (interactive "nTab Width: ")
   (when local
     (make-local-variable 'tab-width)
@@ -117,7 +148,7 @@ redraw$B$,(B non-nil$B$N>l9g$O!"(BWindow$B$r:FIA2h$7$^$9!#(B"
 
 ;; transparent window
 (if window-system (progn
-		    (set-frame-parameter nil 'alpha 90) ;$BF)L@EY(B
+		    (set-frame-parameter nil 'alpha 90) ;透明度
 		    ))
 
 ;; Fonts
