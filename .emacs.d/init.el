@@ -37,11 +37,12 @@
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
 ;; GFM (GitHub Flavored Markdown)
-(add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
+(add-to-list 'auto-mode-alist '("\\.md" . gfm-mode))
 
 ;; web-mode
+(add-to-list 'auto-mode-alist '("\\.tpl.html" . web-mode))
 (setq web-mode-engines-alist
-      '(("django" . "\\.tpl.html\\'"))       ;; jinja2
+      '(("django" . "\\.tpl.html"))       ;; jinja2
       )
 
 (defun my-web-mode-hook ()
@@ -91,6 +92,8 @@
                              (set (make-variable-buffer-local 'company-idle-delay) 0.1)
                              (set (make-variable-buffer-local 'company-minimum-prefix-length) 0)))
 
+;; golang
+(add-hook 'before-save-hook #'gofmt-before-save)
 
 
 ;; IME
@@ -201,7 +204,7 @@ redrawが non-nilの場合は、Windowを再描画します。"
    [default default default italic underline success warning error])
  '(package-selected-packages
    (quote
-    (ac-racer company-racer flycheck flycheck-clangcheck flycheck-kotlin flycheck-perl6 flycheck-rust racer kotlin-mode ox-asciidoc ox-gfm ox-rst ox-textile cargo company-inf-ruby inf-ruby migemo go-mode ob-go ob-kotlin ob-swift rust-mode swift-mode swift3-mode ob-ipython moe-theme counsel twittering-mode mhc smex yatex auto-complete ein wanderlust ddskk elscreen org)))
+    (ecb web-mode-edit-element web-mode company-racer flycheck flycheck-clangcheck flycheck-kotlin flycheck-perl6 flycheck-rust kotlin-mode ox-asciidoc ox-gfm ox-rst ox-textile cargo company-inf-ruby inf-ruby migemo go-mode ob-go ob-kotlin ob-swift rust-mode swift-mode swift3-mode ob-ipython moe-theme counsel twittering-mode mhc smex yatex auto-complete ein wanderlust ddskk elscreen org)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
