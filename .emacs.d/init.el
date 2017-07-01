@@ -63,6 +63,9 @@
   )
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 
+;; autopep8
+(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+
 ;; kotlin-mode
 (defun my-kotolin-mode-hook ()
   "Hook for Kotlin mode."
