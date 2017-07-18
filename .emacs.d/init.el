@@ -75,6 +75,7 @@
 (add-hook 'kotlin-mode-hook 'my-kotolin-mode-hook)
 
 ;; YaTeX-mode
+(load "yatex")
 (add-to-list 'auto-mode-alist '("\\.tex" . yatex-mode))
 
 ;; rust-mode
