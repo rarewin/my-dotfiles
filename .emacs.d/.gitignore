@@ -1,0 +1,8 @@
+# for local setting
+/local
+
+# auto generated directories
+/auto-save-list
+/elpa
+/smex-items
+/server
