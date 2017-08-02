@@ -172,8 +172,13 @@ redrawが non-nilの場合は、Windowを再描画します。"
   (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
 
 ;; theme
+(require 'powerline)
 (require 'moe-theme)
 (moe-dark)
+(powerline-moe-theme)
+(moe-theme-set-color 'cyan)
+(set-face-foreground 'font-lock-comment-face "maroon")
+
 
 ;; for org-mode
 (require 'ox-asciidoc)
