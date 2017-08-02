@@ -18,9 +18,10 @@ source ~/.zplug/init.zsh
 
 ## Supports oh-my-zsh plugins and the like
 #zplug "plugins/git",   from:oh-my-zsh
+zplug "plugins/gitfast",   from:oh-my-zsh
 
 # colorful CLI
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 # zsh-completions
 zplug "zsh-users/zsh-completions"
