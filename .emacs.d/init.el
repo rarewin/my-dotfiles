@@ -7,6 +7,7 @@
 
 ;; global key settings
 (global-set-key (kbd "<f5>") 'revert-buffer)   ; f5 - revert buffer
+(global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)	; f11 - full screen
 (global-set-key "\C-h" 'backward-delete-char)  ; C-h should be backspace!
 (global-set-key "\C-j" nil)                    ; C-j
 (global-set-key (kbd "M-x") 'counsel-M-x)
