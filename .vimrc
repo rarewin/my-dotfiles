@@ -33,3 +33,9 @@ set nobackup
 set iminsert=0
 set imsearch=-1
 
+" フォント設定
+set guifont=Ricty_Diminished_Discord:h12:cSHIFTJIS:qDRAFT
+
+" シンタックスハイライト
+syntax on
+
