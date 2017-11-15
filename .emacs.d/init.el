@@ -1,7 +1,7 @@
 ;; Package
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/"))
+             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 (package-initialize)
 
 
@@ -41,7 +41,7 @@
 (add-to-list 'auto-mode-alist '("\\.md" . gfm-mode))
 
 ;; web-mode
-(add-to-list 'auto-mode-alist '("\\.tpl.html" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html" . web-mode))
 (setq web-mode-engines-alist
       '(("django" . "\\.tpl.html"))       ;; jinja2
       )

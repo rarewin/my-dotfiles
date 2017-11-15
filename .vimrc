@@ -39,3 +39,6 @@ set guifont=Ricty_Diminished_Discord:h12:cSHIFTJIS:qDRAFT
 " シンタックスハイライト
 syntax on
 
+" 折り返さない
+set nowrap
+
