@@ -4,6 +4,31 @@
              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 (package-initialize)
 
+;; cask
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+
+;; company
+(global-company-mode +1)
+(define-key company-active-map (kbd "C-n") 'company-select-next)
+(define-key company-active-map (kbd "C-p") 'company-select-previous)
+(define-key company-search-map (kbd "C-n") 'company-select-next)
+(define-key company-search-map (kbd "C-p") 'company-select-previous)
+
+;; company-tern (for Java Script)
+(add-to-list 'company-backends 'company-tern)
+
+;; company-jedi (for Python)
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
+
+;; company-irony (for C/C++)
+(require 'irony)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(add-to-list 'company-backends 'company-irony)
 
 ;; global key settings
 (global-set-key (kbd "<f5>") 'revert-buffer)   ; f5 - revert buffer
