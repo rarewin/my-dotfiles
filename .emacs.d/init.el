@@ -30,6 +30,11 @@
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 (add-to-list 'company-backends 'company-irony)
 
+;; company-racer (for Rust)
+(with-eval-after-load 'company
+  (add-to-list 'company-backends 'company-racer))
+
+
 ;; global key settings
 (global-set-key (kbd "<f5>") 'revert-buffer)   ; f5 - revert buffer
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)	; f11 - full screen
