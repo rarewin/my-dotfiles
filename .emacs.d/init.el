@@ -34,6 +34,8 @@
 (with-eval-after-load 'company
   (add-to-list 'company-backends 'company-racer))
 
+;; git-gutter+
+(global-git-gutter+-mode)
 
 ;; global key settings
 (global-set-key (kbd "<f5>") 'revert-buffer)   ; f5 - revert buffer
