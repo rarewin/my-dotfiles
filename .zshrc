@@ -70,6 +70,15 @@ export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
+# functions
+function peco_lv() {
+    peco | awk -F: '{print $1}' | xargs lv
+}
+
+#
+if [ -f ${HOME}/.zshfuncs ]; then
+    . ${HOME}/.zshfuncs
+fi
 
 # alias.
 alias ls="ls -F --color"
@@ -83,3 +92,6 @@ PERL5LIB="${HOME}/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="${HOME}/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"${HOME}/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
+
+LV=-c
+
