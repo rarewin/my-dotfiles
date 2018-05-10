@@ -76,8 +76,8 @@ function peco_lv() {
 }
 
 #
-if [ -f ${HOME}/.zshfuncs ]; then
-    . ${HOME}/.zshfuncs
+if [ -f ${HOME}/.zshrc.local ]; then
+    . ${HOME}/.zshrc.local
 fi
 
 # alias.
