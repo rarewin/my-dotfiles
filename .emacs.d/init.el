@@ -74,8 +74,11 @@
 
 ;; web-mode
 (add-to-list 'auto-mode-alist '("\\.html" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.vue" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js" . web-mode))
 (setq web-mode-engines-alist
-      '(("django" . "\\.tpl.html"))       ;; jinja2
+      '(("django" . "\\.tpl.html")       ;; jinja2
+	("vue" . "\\.vue"))
       )
 
 (defun my-web-mode-hook ()
