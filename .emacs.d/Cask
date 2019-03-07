@@ -1,6 +1,7 @@
 (source gnu)
 (source melpa)
 
+(depends-on "auctex")
 (depends-on "bind-key")
 (depends-on "cask")
 (depends-on "coffee-mode")
@@ -42,4 +43,5 @@
 (depends-on "smex")
 (depends-on "use-package")
 (depends-on "web-mode")
+(depends-on "xclip")
 (depends-on "yasnippet")

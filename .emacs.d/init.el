@@ -61,7 +61,7 @@
 ;; hide menu-bar, tool-bar, and scroll-bar
 (menu-bar-mode 0)
 (tool-bar-mode 0)
-(scroll-bar-mode 0)
+;; (scroll-bar-mode 0)
 
 ;; format for C programs
 (defun my-c-mode-common-hook ()
@@ -75,21 +75,28 @@
 ;; web-mode
 (add-to-list 'auto-mode-alist '("\\.html" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.vue" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.js" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?" . web-mode))
 (setq web-mode-engines-alist
       '(("django" . "\\.tpl.html")       ;; jinja2
-	("vue" . "\\.vue"))
-      )
+	("vue" . "\\.vue")
+	("jsx" . "\\.jsx?")              ;; React
+	))
 
 (defun my-web-mode-hook ()
   "Hook for Web mode."
+  (setq web-mode-attr-indent-offset nil)
+  (setq web-mode-attr-value-indent-offset nil)
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
+  (setq web-mode-sql-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
   (setq web-mode-indent-style 2)
   (setq indent-tabs-mode nil)
+  (setq tab-width 2)
   )
 (add-hook 'web-mode-hook 'my-web-mode-hook)
+
+(setq web-mode-enable-engine-detection t)
 
 ;; python-mode
 (defun my-python-mode-hook ()
@@ -130,7 +137,7 @@
                              (company-mode)
                              ;;; この辺の設定はお好みで
                              (set (make-variable-buffer-local 'company-idle-delay) 0.1)
-                             (set (make-variable-buffer-local 'company-minimum-prefix-length) 0)))
+                             (set (make-variable-buffer-local 'company-minimum-prefix-length) 3)))
 
 ;; golang
 (add-hook 'before-save-hook #'gofmt-before-save)
@@ -140,9 +147,13 @@
 (setq default-input-method "japanese-skk")
 
 ;; elscreen
+(global-unset-key (kbd "C-z"))
 (load "elscreen")
 (setq elscreen-prefix-key (kbd "C-z"))
 (elscreen-start)
+
+;; xclip
+(xclip-mode 1)
 
 ;; タブ幅.
 (setq-default tab-width 8)
@@ -195,18 +206,18 @@ redrawが non-nilの場合は、Windowを再描画します。"
 		    ))
 
 ;; Fonts
-(let* ((size 10)
-       (asciifont "Ricty Diminished Discord")
-       (jpfont "Ricty Diminished Discord")
-       (h (* size 10))
-       (fontspec (font-spec :family asciifont))
-       (jp-fontspec (font-spec :family jpfont)))
-  (set-face-attribute 'default nil :family asciifont :height h)
-  (set-fontset-font nil 'japanese-jisx0213.2004-1 jp-fontspec)
-  (set-fontset-font nil 'japanese-jisx0213-2 jp-fontspec)
-  (set-fontset-font nil 'katakana-jisx0201 jp-fontspec)
-  (set-fontset-font nil '(#x0080 . #x024F) fontspec)
-  (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
+;(let* ((size 10)
+;       (asciifont "Ricty Diminished Discord")
+;       (jpfont "Ricty Diminished Discord")
+;       (h (* size 10))
+;       (fontspec (font-spec :family asciifont))
+;       (jp-fontspec (font-spec :family jpfont)))
+;  (set-face-attribute 'default nil :family asciifont :height h)
+;  (set-fontset-font nil 'japanese-jisx0213.2004-1 jp-fontspec)
+;  (set-fontset-font nil 'japanese-jisx0213-2 jp-fontspec)
+;  (set-fontset-font nil 'katakana-jisx0201 jp-fontspec)
+;  (set-fontset-font nil '(#x0080 . #x024F) fontspec)
+;  (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
 
 ;; theme
 (require 'powerline)
@@ -214,7 +225,7 @@ redrawが non-nilの場合は、Windowを再描画します。"
 (moe-dark)
 (powerline-moe-theme)
 (moe-theme-set-color 'cyan)
-(set-face-foreground 'font-lock-comment-face "maroon")
+(set-face-foreground 'font-lock-comment-face "pink")
 
 
 ;; for org-mode
