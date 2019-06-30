@@ -1,4 +1,5 @@
-;; Package
+;
+; Package
 (require 'package)
 (add-to-list 'package-archives
              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
@@ -32,18 +33,18 @@
 (add-hook 'objc-mode-hook 'lsp)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 (require 'clang-format)
-(add-hook 'c-mode-common-hook
-          (function (lambda ()
-                    (add-hook 'before-save-hook
-                              'clang-format-buffer))))
-(add-hook 'c++-mode-common-hook
-          (function (lambda ()
-                    (add-hook 'before-save-hook
-                              'clang-format-buffer))))
-(add-hook 'objc-mode-common-hook
-          (function (lambda ()
-                    (add-hook 'before-save-hook
-                              'clang-format-buffer))))
+;(add-hook 'c-mode-common-hook
+;          (function (lambda ()
+;                    (add-hook 'before-save-hook
+;                              'clang-format-buffer))))
+;(add-hook 'c++-mode-common-hook
+;          (function (lambda ()
+;                    (add-hook 'before-save-hook
+;                              'clang-format-buffer))))
+;(add-hook 'objc-mode-common-hook
+;          (function (lambda ()
+;                    (add-hook 'before-save-hook
+;                              'clang-format-buffer))))
 
 ;; Rust
 ;(add-hook 'rust-mode-hook (lambda ()
@@ -67,7 +68,7 @@
 
 ;; make C-a lovely
 (define-key global-map "\C-a"
-  #'(lambda (arg)
+#'(lambda (arg)
       (interactive "p")
       (if (looking-at "^")
 	  (back-to-indentation)
