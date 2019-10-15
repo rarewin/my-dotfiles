@@ -19,6 +19,7 @@
 (depends-on "drag-stuff")
 (depends-on "dts-mode")
 (depends-on "elscreen")
+(depends-on "elpy")
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
 (depends-on "f")

@@ -118,15 +118,24 @@
 (setq web-mode-enable-engine-detection t)
 
 ;; python-mode
-(defun my-python-mode-hook ()
-  "Hook for Python mode."
-  (setq python-indent-guess-indent-offset 4)
-  (setq indent-tabs-mode nil)
-  )
-(add-hook 'python-mode-hook 'my-python-mode-hook)
+; (defun my-python-mode-hook ()
+;   "Hook for Python mode."
+;   (setq python-indent-guess-indent-offset 4)
+;   (setq indent-tabs-mode nil)
+;   )
+; (add-hook 'python-mode-hook 'my-python-mode-hook)
 
-;; autopep8
-(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+;; elpy
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
+(defun my-elpy-mode-hook ()
+  "Hook for elpy mode"
+  (add-hook 'before-save-hook 'elpy-format-code)
+  )
+(add-hook 'elpy-mode-hook 'my-elpy-mode-hook)
+(setq elpy-rpc-python-command "python3")
 
 ;; kotlin-mode
 (defun my-kotolin-mode-hook ()
