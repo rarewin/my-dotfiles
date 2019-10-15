@@ -95,3 +95,7 @@ PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
 
 export LV=-c
 export LESS=-R
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/katsu/.sdkman"
+[[ -s "/home/katsu/.sdkman/bin/sdkman-init.sh" ]] && source "/home/katsu/.sdkman/bin/sdkman-init.sh"

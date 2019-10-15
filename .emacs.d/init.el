@@ -7,14 +7,13 @@
 	     '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
-;; cask
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
 ;; company
 (require 'company-lsp)
 (push 'company-lsp company-backends)
-;(global-company-mode +1)
+(global-company-mode +1)
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
 (define-key company-search-map (kbd "C-n") 'company-select-next)
@@ -55,7 +54,7 @@
 (add-hook 'rust-mode-hook 'lsp)
 
 ;; git-gutter+
-(global-git-gutter+-mode)
+;(global-git-gutter+-mode)
 
 ;; global key settings
 (global-set-key (kbd "<f5>") 'revert-buffer)   ; f5 - revert buffer
@@ -138,12 +137,11 @@
 (add-hook 'kotlin-mode-hook 'my-kotolin-mode-hook)
 
 ;; YaTeX-mode
-(load "yatex")
-(add-to-list 'auto-mode-alist '("\\.tex" . yatex-mode))
+;(load "yatex")
+;(add-to-list 'auto-mode-alist '("\\.tex" . yatex-mode))
 
 ;; golang
 (add-hook 'before-save-hook #'gofmt-before-save)
-
 
 ;; IME
 (setq default-input-method "japanese-skk")
@@ -231,42 +229,25 @@ redrawが non-nilの場合は、Windowを再描画します。"
 
 
 ;; for org-mode
-(require 'ox-asciidoc)
-(require 'ox-gfm)
-(require 'ox-rst)
-(require 'ox-textile)
+;(require 'ox-asciidoc)
+;(require 'ox-gfm)
+;(require 'ox-rst)
+;(require 'ox-textile)
 
-(require 'ob-ipython)
-(require 'ob-ruby)
-(require 'ob-go)
-(require 'ob-kotlin)
-(require 'ob-swift)
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((ipython . t)
-   (go . t)
-   (kotlin . t)
-   (swift . t)
-   (ruby . t)
-   ))
+;(require 'ob-ipython)
+;(require 'ob-ruby)
+;(require 'ob-go)
+;(require 'ob-kotlin)
+;(require 'ob-swift)
+;(org-babel-do-load-languages
+; 'org-babel-load-languages
+; '((ipython . t)
+;   (go . t)
+;   (kotlin . t)
+;   (swift . t)
+;   (ruby . t)
+;   ))
 
 ;; start emacs-server
 (server-start)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(package-selected-packages
-   (quote
-    (ecb web-mode-edit-element web-mode company-racer flycheck flycheck-clangcheck flycheck-kotlin flycheck-perl6 flycheck-rust kotlin-mode ox-asciidoc ox-gfm ox-rst ox-textile cargo company-inf-ruby inf-ruby migemo go-mode ob-go ob-kotlin ob-swift rust-mode swift-mode swift3-mode ob-ipython moe-theme counsel twittering-mode mhc smex yatex auto-complete ein wanderlust ddskk elscreen org)))
- '(show-paren-mode t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
