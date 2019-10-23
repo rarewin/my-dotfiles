@@ -1,4 +1,5 @@
-;; Package
+;
+; Package
 (require 'package)
 (add-to-list 'package-archives
              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
@@ -22,28 +23,12 @@
 ;; company-tern (for Java Script)
 (add-to-list 'company-backends 'company-tern)
 
-;; company-jedi (for Python)
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
-
 ;; C/C++
-(add-hook 'c-mode-hook 'lsp)
-(add-hook 'c++-mode-hook 'lsp)
-(add-hook 'objc-mode-hook 'lsp)
+;(add-hook 'c-mode-hook 'lsp)
+;(add-hook 'c++-mode-hook 'lsp)
+;(add-hook 'objc-mode-hook 'lsp)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 (require 'clang-format)
-(add-hook 'c-mode-common-hook
-          (function (lambda ()
-                    (add-hook 'before-save-hook
-                              'clang-format-buffer))))
-(add-hook 'c++-mode-common-hook
-          (function (lambda ()
-                    (add-hook 'before-save-hook
-                              'clang-format-buffer))))
-(add-hook 'objc-mode-common-hook
-          (function (lambda ()
-                    (add-hook 'before-save-hook
-                              'clang-format-buffer))))
 
 ;; Rust
 ;(add-hook 'rust-mode-hook (lambda ()
@@ -54,7 +39,7 @@
 (add-hook 'rust-mode-hook 'lsp)
 
 ;; git-gutter+
-(global-git-gutter+-mode)
+;(global-git-gutter+-mode)
 
 ;; global key settings
 (global-set-key (kbd "<f5>") 'revert-buffer)   ; f5 - revert buffer
@@ -67,7 +52,7 @@
 
 ;; make C-a lovely
 (define-key global-map "\C-a"
-  #'(lambda (arg)
+#'(lambda (arg)
       (interactive "p")
       (if (looking-at "^")
 	  (back-to-indentation)
@@ -124,6 +109,7 @@
   (setq indent-tabs-mode nil)
   )
 (add-hook 'python-mode-hook 'my-python-mode-hook)
+(add-hook 'python-mode-hook 'lsp)
 
 ;; autopep8
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
@@ -204,21 +190,21 @@ redrawが non-nilの場合は、Windowを再描画します。"
 ;; transparent window
 (if window-system (progn
 		    (set-frame-parameter nil 'alpha 90) ;透明度
-		    ))
+	    ))
 
 ;; Fonts
-;(let* ((size 10)
-;       (asciifont "Ricty Diminished Discord")
-;       (jpfont "Ricty Diminished Discord")
-;       (h (* size 10))
-;       (fontspec (font-spec :family asciifont))
-;       (jp-fontspec (font-spec :family jpfont)))
-;  (set-face-attribute 'default nil :family asciifont :height h)
-;  (set-fontset-font nil 'japanese-jisx0213.2004-1 jp-fontspec)
-;  (set-fontset-font nil 'japanese-jisx0213-2 jp-fontspec)
-;  (set-fontset-font nil 'katakana-jisx0201 jp-fontspec)
-;  (set-fontset-font nil '(#x0080 . #x024F) fontspec)
-;  (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
+(let* ((size 10)
+       (asciifont "Ricty Diminished Discord")
+       (jpfont "Ricty Diminished Discord")
+       (h (* size 10))
+       (fontspec (font-spec :family asciifont))
+       (jp-fontspec (font-spec :family jpfont)))
+  (set-face-attribute 'default nil :family asciifont :height h)
+  (set-fontset-font nil 'japanese-jisx0213.2004-1 jp-fontspec)
+  (set-fontset-font nil 'japanese-jisx0213-2 jp-fontspec)
+  (set-fontset-font nil 'katakana-jisx0201 jp-fontspec)
+  (set-fontset-font nil '(#x0080 . #x024F) fontspec)
+  (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
 
 ;; theme
 (require 'powerline)
@@ -230,6 +216,9 @@ redrawが non-nilの場合は、Windowを再描画します。"
 
 
 ;; for org-mode
+(setq org-directory "~/Org")
+(setq org-default-notes-file "notes.org")
+
 (require 'ox-asciidoc)
 (require 'ox-gfm)
 (require 'ox-rst)
@@ -247,22 +236,83 @@ redrawが non-nilの場合は、Windowを再描画します。"
    (kotlin . t)
    (swift . t)
    (ruby . t)
+   (plantuml . t)
    ))
+(setq org-plantuml-jar-path "~/.emacs.d/lib/plantuml.jar")
+
+; Org-captureの設定
+; Org-captureを呼び出すキーシーケンス
+(define-key global-map "\C-cc" 'org-capture)
+; Org-captureのテンプレート（メニュー）の設定
+(setq org-capture-templates
+      '(("n" "Note" entry (file+headline "~/Org/notes.org" "Notes")
+         "* %?\nEntered on %U\n %i\n %a")
+        ))
+
+(defun show-org-buffer (file)
+  "Show an org-file FILE on the current buffer."
+  (interactive)
+  (if (get-buffer file)
+      (let ((buffer (get-buffer file)))
+        (switch-to-buffer buffer)
+        (message "%s" file))
+    (find-file (concat "~/Org/" file))))
+(global-set-key (kbd "C-M-^") '(lambda () (interactive)
+                                 (show-org-buffer "notes.org")))
+
+(setq org-agenda-files '("~/Org"))
+(setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "SOMEDAY(s)" "PENDING(p)" "WAITING(w)" "|" "DONE(d)")))
+
+(use-package org-journal
+  :ensure t
+  :defer t
+  :custom
+  (org-journal-dir "~/Org/journal")
+  (org-journal-date-format "%A, %d %B %Y"))
+
+(setq org-journal-carryover-items
+      "TODO=\"TODO\"|TODO=\"PENDING\"|TODO=\"SOMEDAY\"|TODO=\"WAITING\"")
+
+;;; for windows
+(setq w32-pipe-read-delay 0)
 
 ;; start emacs-server
 (server-start)
 
+;(custom-set-variables
+; ;; custom-set-variables was added by Custom.
+; ;; If you edit it by hand, you could mess it up, so be careful.
+; ;; Your init file should contain only one such instance.
+; ;; If there is more than one, they won't work right.
+; '(ansi-color-faces-vector
+;   [default default default italic underline success warning error])
+; '(package-selected-packages
+;   (quote
+;    (ripgrep company-irony company-c-headers company-go company-irony-c-headers company-racer vue-html-mode vue-mode web-mode ein-mumamo ac-c-headers ac-html ob-rust gradle-mode powerline org-sync org-sync-snippets org-redmine mew git git-command ctags-update py-autopep8 shell-pop company ecb rust-playground ac-racer flycheck flycheck-clangcheck flycheck-kotlin flycheck-perl6 flycheck-rust kotlin-mode ox-asciidoc ox-gfm ox-rst ox-textile cargo company-inf-ruby inf-ruby migemo go-mode ob-go ob-kotlin ob-swift rust-mode swift-mode swift3-mode ob-ipython moe-theme counsel twittering-mode mhc smex yatex auto-complete ein wanderlust ddskk elscreen org)))
+; '(show-paren-mode t))
+;(custom-set-faces
+; ;; custom-set-faces was added by Custom.
+; ;; If you edit it by hand, you could mess it up, so be careful.
+; ;; Your init file should contain only one such instance.
+; ;; If there is more than one, they won't work right.
+; )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
  '(package-selected-packages
    (quote
-    (ecb web-mode-edit-element web-mode company-racer flycheck flycheck-clangcheck flycheck-kotlin flycheck-perl6 flycheck-rust kotlin-mode ox-asciidoc ox-gfm ox-rst ox-textile cargo company-inf-ruby inf-ruby migemo go-mode ob-go ob-kotlin ob-swift rust-mode swift-mode swift3-mode ob-ipython moe-theme counsel twittering-mode mhc smex yatex auto-complete ein wanderlust ddskk elscreen org)))
- '(show-paren-mode t))
+    (org-journal yatex yasnippet xclip web-mode use-package smex smartparens racer py-autopep8 projectile prodigy powerline popwin pallet ox-textile ox-rst ox-gfm ox-asciidoc ob-swift ob-kotlin ob-ipython ob-go nyan-mode multiple-cursors moe-theme migemo mew magit kotlin-mode jedi idle-highlight-mode htmlize git-gutter+ gist flycheck-cask expand-region exec-path-from-shell elscreen dts-mode drag-stuff ddskk counsel company-tern company-racer company-lsp company-jedi company-irony coffee-mode clang-format auctex)))
+ '(safe-local-variable-values
+   (quote
+    ((eval add-hook
+	   (quote before-save-hook)
+	   (function clang-format-buffer)
+	   nil t)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
