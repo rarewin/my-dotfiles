@@ -160,8 +160,24 @@
 ;; ハードタブを使う.
 (setq-default indent-tabs-mode t)
 
-;; high light trailing white space
+;; 無駄な文字のハイライト
 (setq-default show-trailing-whitespace t)
+;(setq-default whitespace-space-regexp "\x3000+")
+(setq-default whitespace-style
+	      '(face
+		tabs
+		spaces
+		trailing
+		lines
+		space-before-tab
+		newline
+		indentation
+		empty
+		space-after-tab
+		big-indent
+;		space-mark
+		tab-mark))
+(global-whitespace-mode 1)
 
 ;; 行番号表示.
 (require 'linum)
