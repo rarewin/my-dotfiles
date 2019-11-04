@@ -192,6 +192,7 @@
 		big-indent
 ;		space-mark
 		tab-mark))
+(setq-default whitespace-line-column 160)
 (global-whitespace-mode 1)
 
 ;; 行番号表示.
