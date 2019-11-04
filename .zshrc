@@ -80,6 +80,9 @@ if [ -f ${HOME}/.zshrc.local ]; then
     . ${HOME}/.zshrc.local
 fi
 
+# direnv
+eval "$(direnv hook zsh)"
+
 # alias.
 alias ls="ls -F --color"
 alias cp='cp -i'
