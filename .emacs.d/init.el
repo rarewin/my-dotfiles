@@ -183,15 +183,16 @@
 		tabs
 		spaces
 		trailing
-		lines
+		;; lines
 		space-before-tab
 		newline
 		indentation
 		empty
 		space-after-tab
 		big-indent
-;		space-mark
-		tab-mark))
+		;; space-mark
+		;; tab-mark
+		))
 (setq-default whitespace-line-column 160)
 (global-whitespace-mode 1)
 
@@ -253,7 +254,9 @@ redrawが non-nilの場合は、Windowを再描画します。"
 (powerline-moe-theme)
 (moe-theme-set-color 'cyan)
 (set-face-foreground 'font-lock-comment-face "pink")
-
+(set-face-foreground 'whitespace-tab "darkblue")
+(set-face-underline  'whitespace-tab t)
+(set-face-background 'whitespace-tab nil)
 
 ;; for org-mode
 (require 'ox-asciidoc)
