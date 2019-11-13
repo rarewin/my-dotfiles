@@ -287,7 +287,8 @@ redrawが non-nilの場合は、Windowを再描画します。"
 (global-set-key (kbd "C-M-^") '(lambda () (interactive)
                                  (show-org-buffer "notes.org")))
 
-(setq org-agenda-files '("~/Org"))
+(setq org-agenda-files (list "~/Org"
+			     "~/Org/journal"))
 (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
 
 (setq org-todo-keywords
@@ -302,6 +303,7 @@ redrawが non-nilの場合は、Windowを再描画します。"
 
 (setq org-journal-carryover-items
       "TODO=\"TODO\"|TODO=\"PENDING\"|TODO=\"SOMEDAY\"|TODO=\"WAITING\"")
+(setq org-journal-file-format "%Y%m%d.org")
 
 ;;; for windows
 (setq w32-pipe-read-delay 0)
