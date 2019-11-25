@@ -275,6 +275,46 @@ redrawが non-nilの場合は、Windowを再描画します。"
    (ruby . t)
    ))
 
+; Org-captureの設定
+; Org-captureを呼び出すキーシーケンス
+(define-key global-map "\C-cc" 'org-capture)
+; Org-captureのテンプレート（メニュー）の設定
+(setq org-capture-templates
+      '(("n" "Note" entry (file+headline "~/Org/notes.org" "Notes")
+         "* %?\nEntered on %U\n %i\n %a")
+        ))
+
+(defun show-org-buffer (file)
+  "Show an org-file FILE on the current buffer."
+  (interactive)
+  (if (get-buffer file)
+      (let ((buffer (get-buffer file)))
+        (switch-to-buffer buffer)
+        (message "%s" file))
+    (find-file (concat "~/Org/" file))))
+(global-set-key (kbd "C-M-^") '(lambda () (interactive)
+                                 (show-org-buffer "notes.org")))
+
+(setq org-agenda-files (list "~/Org"
+			     "~/Org/journal"))
+(setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "SOMEDAY(s)" "PENDING(p)" "WAITING(w)" "|" "DONE(d)")))
+
+(use-package org-journal
+  :ensure t
+  :defer t
+  :custom
+  (org-journal-dir "~/Org/journal")
+  (org-journal-date-format "%Y %m/%d %A")
+  (org-journal-time-format "%m/%d %R")
+  )
+
+(setq org-journal-carryover-items
+      "TODO=\"TODO\"|TODO=\"PENDING\"|TODO=\"SOMEDAY\"|TODO=\"WAITING\"")
+(setq org-journal-file-format "%Y%m%d.org")
+
 ;; start emacs-server
 (server-start)
 
