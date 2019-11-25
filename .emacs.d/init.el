@@ -299,7 +299,9 @@ redrawが non-nilの場合は、Windowを再描画します。"
   :defer t
   :custom
   (org-journal-dir "~/Org/journal")
-  (org-journal-date-format "%A, %d %B %Y"))
+  (org-journal-date-format "%Y %m/%d %A")
+  (org-journal-time-format "%m/%d %R")
+  )
 
 (setq org-journal-carryover-items
       "TODO=\"TODO\"|TODO=\"PENDING\"|TODO=\"SOMEDAY\"|TODO=\"WAITING\"")
