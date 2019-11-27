@@ -120,7 +120,7 @@
   (add-hook 'before-save-hook 'elpy-format-code)
   )
 (add-hook 'elpy-mode-hook 'my-elpy-mode-hook)
-(setq elpy-rpc-python-command "python3")
+(setq elpy-rpc-python-command "C:\\Users\\024384\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe")
 
 ;; kotlin-mode
 (defun my-kotolin-mode-hook ()
