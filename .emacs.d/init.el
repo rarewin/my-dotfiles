@@ -300,7 +300,7 @@ redrawが non-nilの場合は、Windowを再描画します。"
 (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "SOMEDAY(s)" "PENDING(p)" "WAITING(w)" "|" "DONE(d)")))
+      '((sequence "TODO(t)" "SOMEDAY(s)" "PENDING(p)" "WAITING(w)" "|" "DONE(d)" "GIVEUP(u)")))
 
 (use-package org-journal
   :ensure t
