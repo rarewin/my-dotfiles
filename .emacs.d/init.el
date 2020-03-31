@@ -52,6 +52,7 @@
 (eval-after-load "rust-mode"
   '(setq-default rust-format-on-save t))
 (add-hook 'rust-mode-hook 'lsp)
+(setq-default lsp-rust-server 'rust-analyzer)
 
 ;; git-gutter+
 (global-git-gutter+-mode)
