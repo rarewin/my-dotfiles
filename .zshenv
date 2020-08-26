@@ -13,7 +13,8 @@ alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 export PATH=${HOME}/.cargo/bin:${HOME}/.local/bin:${PATH}
 
 # SDKMAN
-source ${HOME}/.sdkman/bin/sdkman-init.sh
+export SDKMAN_DIR="/home/rare/.sdkman"
+[[ -s "/home/rare/.sdkman/bin/sdkman-init.sh" ]] && source "/home/rare/.sdkman/bin/sdkman-init.sh"
 
 # cask
 export PATH=${HOME}/.cask/bin:${PATH}
