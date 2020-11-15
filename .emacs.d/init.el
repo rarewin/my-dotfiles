@@ -5,7 +5,7 @@
              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives
 	     '("org" . "http://orgmode.org/elpa/") t)
-(package-initialize)
+; (package-initialize)
 
 ;; cask
 (require 'cask "~/.cask/cask.el")
@@ -127,7 +127,7 @@
 ;   )
 ; (add-hook 'python-mode-hook 'my-python-mode-hook)
 
-;; elpy
+; elpy
 (use-package elpy
   :ensure t
   :init
@@ -183,15 +183,15 @@
 (setq-default whitespace-style
 	      '(face
 		tabs
-		spaces
+		;; spaces
 		trailing
 		;; lines
 		space-before-tab
 		newline
-		indentation
+		;; indentation
 		empty
 		space-after-tab
-		big-indent
+		;; big-indent
 		;; space-mark
 		;; tab-mark
 		))
@@ -254,7 +254,7 @@ redrawが non-nilの場合は、Windowを再描画します。"
 (require 'moe-theme)
 (moe-dark)
 (powerline-moe-theme)
-(moe-theme-set-color 'cyan)
+;(moe-theme-select-color 'cyan)
 (set-face-foreground 'font-lock-comment-face "pink")
 (set-face-foreground 'whitespace-tab "darkblue")
 (set-face-underline  'whitespace-tab t)
