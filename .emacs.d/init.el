@@ -137,7 +137,8 @@
   (add-hook 'before-save-hook 'elpy-format-code)
   )
 (add-hook 'elpy-mode-hook 'my-elpy-mode-hook)
-(setq elpy-rpc-python-command "python3")
+(setq elpy-rpc-python-command "python")
+(setq elpy-rpc-virtualenv-path 'current)
 
 ;; kotlin-mode
 (defun my-kotolin-mode-hook ()
