@@ -58,6 +58,9 @@ function rprompt-git-current-branch() {
     echo -n "$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
 }
 
+# 関数パス
+fpath+=~/.zfunc
+
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
 setopt prompt_subst
 
