@@ -20,6 +20,9 @@ source ~/.zplug/init.zsh
 #zplug "plugins/git",   from:oh-my-zsh
 zplug "plugins/gitfast",   from:oh-my-zsh
 
+# ssh-agent
+zplug "plugins/ssh-agent", from:oh-my-zsh
+
 # colorful CLI
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
