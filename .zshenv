@@ -24,4 +24,7 @@ export GEM_HOME=${HOME}/.gem
 export PATH=${GEM_HOME}/bin:${PATH}
 
 # for RISC-V
-export PATH=/opt/riscv32imac/bin:${PATH}
+export PATH=/opt/riscv/bin:${PATH}
+
+# for swift
+export PATH=${PATH}:/opt/swift/bin

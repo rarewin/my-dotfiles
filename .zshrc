@@ -42,6 +42,9 @@ zplug "Tarrasch/zsh-bd"
 # python venv
 zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
 
+# ssh-agent
+zplug "plugins/ssh-agent", from:oh-my-zsh
+
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
