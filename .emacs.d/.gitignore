@@ -8,3 +8,5 @@
 /server
 /.cask
 
+/eln-cache/
+/straight/
