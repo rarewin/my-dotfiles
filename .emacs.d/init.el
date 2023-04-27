@@ -15,11 +15,17 @@
 (setq package-enable-at-startup nil)
 
 ;; パッケージのインストール
+(straight-use-package 'company-mode)
 (straight-use-package 'counsel)
 (straight-use-package 'ddskk)
 (straight-use-package 'elscreen)
+(straight-use-package 'kotlin-mode)
+(straight-use-package 'lsp-mode)
 (straight-use-package 'moe-theme)
 (straight-use-package 'powerline)
+(straight-use-package 'rustic)
+(straight-use-package 'swift-mode)
+(straight-use-package 'yasnippet)
 
 
 ;; バックアプファイルを無効
@@ -60,3 +66,10 @@
 (load "elscreen")
 (setq elscreen-prefix-key (kbd "C-z"))
 (elscreen-start)
+
+;; rustic
+(setq rustic-format-trigger 'on-save)
+
+
+;; start emacs-server
+(server-start)
