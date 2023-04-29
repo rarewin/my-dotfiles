@@ -70,6 +70,9 @@
 ;; rustic
 (setq rustic-format-trigger 'on-save)
 
+;; yasnippet
+(yas-global-mode)
+
 
 ;; start emacs-server
 (server-start)
