@@ -113,6 +113,27 @@ redrawが non-nilの場合は、Windowを再描画します。"
 
 (define-key global-map "\C-c\C-t" 'set-aurora-tab-width)
 
+;; 無駄な文字のハイライト
+(setq-default show-trailing-whitespace t)
+;(setq-default whitespace-space-regexp "\x3000+")
+(setq-default whitespace-style
+	      '(face
+		tabs
+		;; spaces
+		trailing
+		;; lines
+		space-before-tab
+		newline
+		;; indentation
+		empty
+		space-after-tab
+		;; big-indent
+		;; space-mark
+		;; tab-mark
+		))
+(setq-default whitespace-line-column 160)
+(global-whitespace-mode 1)
+
 ;; make C-a lovely
 (define-key global-map "\C-a"
 #'(lambda (arg)
