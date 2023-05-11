@@ -28,6 +28,7 @@
 ;(straight-use-package 'org-mode)  ;; makeがない……
 (straight-use-package 'org-journal)
 (straight-use-package 'powerline)
+(straight-use-package 'review)
 (straight-use-package 'rustic)
 (straight-use-package 'swift-mode)
 (straight-use-package 'yasnippet)
