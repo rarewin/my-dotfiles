@@ -6,7 +6,7 @@
 /elpa
 /smex-items
 /server
-/.cask
 
-/eln-cache/
-/straight/
+/eln-cache
+/straight/*
+!/straight/versions

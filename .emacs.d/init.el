@@ -21,6 +21,7 @@
 (straight-use-package 'company-mode)
 (straight-use-package 'counsel)
 (straight-use-package 'ddskk)
+(straight-use-package 'eglot)
 (straight-use-package 'elscreen)
 (straight-use-package 'kotlin-mode)
 (straight-use-package 'lsp-mode)
