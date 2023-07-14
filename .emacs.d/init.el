@@ -29,6 +29,8 @@
 ;(straight-use-package 'org-mode)  ;; makeがない……
 (straight-use-package 'org-journal)
 (straight-use-package 'powerline)
+(straight-use-package 'python-black)
+(straight-use-package 'python-mode)
 (straight-use-package 'review)
 (straight-use-package 'rustic)
 (straight-use-package 'swift-mode)
@@ -178,6 +180,9 @@ redrawが non-nilの場合は、Windowを再描画します。"
 (setq org-journal-carryover-items
       "TODO=\"TODO\"|TODO=\"PENDING\"|TODO=\"SOMEDAY\"|TODO=\"WAITING\"")
 (setq org-journal-file-format "%Y%m%d.org")
+
+;; rustic
+(setq rustic-format-trigger 'on-save)
 
 ;; Cでのインデントをいじる
 (add-hook 'c-mode-hook
