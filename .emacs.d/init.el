@@ -96,7 +96,7 @@
 (transient-mark-mode t)
 
 ;; 折り返さない
-(setq truncate-lines t)
+(set-default 'truncate-lines t)
 
 ;; タブ幅変更関数
 (defun set-aurora-tab-width (num &optional local redraw)
