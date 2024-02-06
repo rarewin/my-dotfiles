@@ -28,12 +28,15 @@
 (straight-use-package 'moe-theme)
 ;(straight-use-package 'org-mode)  ;; makeがない……
 (straight-use-package 'org-journal)
+(straight-use-package 'org-roam)
+(straight-use-package 'org-roam-ui)
 (straight-use-package 'powerline)
 (straight-use-package 'python-black)
 (straight-use-package 'python-mode)
 (straight-use-package 'review)
 (straight-use-package 'rustic)
 (straight-use-package 'swift-mode)
+(straight-use-package 'web-mode)
 (straight-use-package 'yasnippet)
 
 
@@ -191,6 +194,29 @@ redrawが non-nilの場合は、Windowを再描画します。"
      (c-set-offset 'extern-lang-close 0)
      (c-set-offset 'inextern-lang 0))
   )
+
+;; web-mode
+(add-to-list 'auto-mode-alist
+	     '("\\.ts[x]?\\'" . web-mode)
+	     )
+;(add-hook 'web-mode-hook 'lsp)
+
+
+;; Windowsとのコピペ処理
+(defun wsl-copy (start end)
+  (interactive "r")
+  (shell-command-on-region start end "iconv -t utf16 | clip.exe")
+  (deactivate-mark)
+  )
+
+(defun wsl-paste ()
+  (interactive)
+  (let ((clipboard
+     (shell-command-to-string "powershell.exe -command 'Get-Clipboard' | nkf -u")))
+    (setq clipboard (replace-regexp-in-string "\r" "" clipboard)) ; Remove Windows ^M characters
+    (setq clipboard (substring clipboard 0 -1)) ; Remove newline added by Powershell
+    (insert clipboard)))
+
 
 ;; start emacs-server
 (server-start)
