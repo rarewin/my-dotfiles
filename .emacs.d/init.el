@@ -27,6 +27,7 @@
 (straight-use-package 'powerline)
 (straight-use-package 'rustic)
 (straight-use-package 'swift-mode)
+(straight-use-package 'web-mode)
 (straight-use-package 'yasnippet)
 
 
@@ -175,6 +176,11 @@ redrawが non-nilの場合は、Windowを再描画します。"
 (setq org-journal-carryover-items
       "TODO=\"TODO\"|TODO=\"PENDING\"|TODO=\"SOMEDAY\"|TODO=\"WAITING\"")
 (setq org-journal-file-format "%Y%m%d.org")
+
+;; web-mode
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
 
 ;; Cでのインデントをいじる
 (add-hook 'c-mode-hook
