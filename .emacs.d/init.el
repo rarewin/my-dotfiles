@@ -192,6 +192,11 @@ redrawが non-nilの場合は、Windowを再描画します。"
 ;; rustic
 (setq rustic-format-trigger 'on-save)
 
+;; web-mode
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
+
 ;; Cでのインデントをいじる
 (add-hook 'c-mode-hook
   '(lambda ()
