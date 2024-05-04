@@ -38,6 +38,7 @@
 (straight-use-package 'powerline)
 (straight-use-package 'python-black)
 (straight-use-package 'python-mode)
+(straight-use-package 'reformatter)
 (straight-use-package 'review)
 (straight-use-package 'rustic)
 (straight-use-package 'swift-mode)
@@ -196,6 +197,12 @@ redrawが non-nilの場合は、Windowを再描画します。"
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
+
+;; biome <https://zenn.dev/craneduck/articles/3c0da51d4767d5>
+(reformatter-define biome-format ;; 第1引数はわかりやすい自由な名前
+  :program "biome" ;; コマンド。PATHが通っていること(後述のadd-node-modules-pathを使っても良い)
+  :args `("format" "--stdin-file-path" ,(buffer-file-name)) ;; オプション引数のリスト、実行時に評価される
+  :lighter " BiomeFmt") ;; minor-modeとして使う場合の、モードラインに表示する名前(先頭にスペースが必要)
 
 ;; Cでのインデントをいじる
 (add-hook 'c-mode-hook
