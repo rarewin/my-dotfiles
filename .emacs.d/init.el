@@ -200,9 +200,14 @@ redrawが non-nilの場合は、Windowを再描画します。"
 
 ;; biome <https://zenn.dev/craneduck/articles/3c0da51d4767d5>
 (reformatter-define biome-format ;; 第1引数はわかりやすい自由な名前
-  :program "biome" ;; コマンド。PATHが通っていること(後述のadd-node-modules-pathを使っても良い)
-  :args `("format" "--stdin-file-path" ,(buffer-file-name)) ;; オプション引数のリスト、実行時に評価される
+  :program "npx" ;; コマンド。PATHが通っていること(後述のadd-node-modules-pathを使っても良い)
+  :args `("biome" "format" "--stdin-file-path" ,(buffer-file-name)) ;; オプション引数のリスト、実行時に評価される
   :lighter " BiomeFmt") ;; minor-modeとして使う場合の、モードラインに表示する名前(先頭にスペースが必要)
+
+(reformatter-define biome-check
+  :program "npx"
+  :args `("biome" "check" "--apply-unsafe" "--stdin-file-path" ,(buffer-file-name))
+  :lighter " BiomeCheck")
 
 ;; Cでのインデントをいじる
 (add-hook 'c-mode-hook
@@ -256,3 +261,10 @@ redrawが non-nilの場合は、Windowを再描画します。"
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Source Code Pro" :foundry "outline" :slant normal :weight normal :height 90 :width normal)))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values
+   '((eval add-hook 'before-save-hook #'biome-check-buffer nil t))))
