@@ -31,7 +31,7 @@
 (straight-use-package 'kotlin-mode)
 (straight-use-package 'lsp-mode)
 (straight-use-package 'moe-theme)
-;(straight-use-package 'org-mode)  ;; makeがない……
+(straight-use-package 'org-mode)  ;; makeがない……
 (straight-use-package 'org-journal)
 (straight-use-package 'org-roam)
 (straight-use-package 'org-roam-ui)
@@ -222,6 +222,18 @@ redrawが non-nilの場合は、Windowを再描画します。"
     (setq clipboard (substring clipboard 0 -1)) ; Remove newline added by Powershell
     (insert clipboard)))
 
+
+;; org-roam
+(setq org-roam-v2-ack t)
+(setq org-roam-db-location "~/Org/org-roam.db")
+(setq org-roam-directory "~/Org/org-roam/")
+; (setq org-roam-graph-executable "/opt/homebrew/bin/dot")
+(global-set-key (kbd "C-c n l") 'org-roam-buffer-toggle)
+(global-set-key (kbd "C-c n f") 'org-roam-node-find)
+(global-set-key (kbd "C-c n g") 'org-roam-graph)
+(global-set-key (kbd "C-c n i") 'org-roam-node-insert)
+(require 'org-roam)
+(org-roam-setup)
 
 ;; start emacs-server
 (server-start)
