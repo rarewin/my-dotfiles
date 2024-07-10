@@ -2,7 +2,7 @@ if has('gui_running') && !has('unix')
   set encoding=utf-8
 endif
 
-set fileencodings=iso-2022-jp,utf-8,cp932,euc-jp,default,latin
+set fileencodings=utf-8,cp932,iso-2022-jp,euc-jp,default,latin
 
 " 行番号.
 set number
