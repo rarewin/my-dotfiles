@@ -194,6 +194,11 @@ redrawが non-nilの場合は、Windowを再描画します。"
   :args `("biome" "check" "--apply-unsafe" "--stdin-file-path" ,(buffer-file-name))
   :lighter " BiomeCheck")
 
+(reformatter-define ruff-format
+  :program "uv"
+  :args `("run" "ruff" "format" "--stdin-filename" ,(or (buffer-file-name) input-file))
+  :lighter " RuffFmt")
+
 ;; Cでのインデントをいじる
 (add-hook 'c-mode-hook
   '(lambda ()
