@@ -78,7 +78,10 @@
 ;; 表示設定
 (menu-bar-mode 0)
 (tool-bar-mode 0)
-(scroll-bar-mode 0)
+
+;; GUIのときだけスクロールモードをoff設定に
+(when (display-graphic-p)
+  (scroll-bar-mode -1))
 
 ;; 括弧を表示.
 (show-paren-mode 1)
