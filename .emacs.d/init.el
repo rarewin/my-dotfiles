@@ -51,6 +51,59 @@
 	      ("M->". company-select-last))
   )
 
+;; org-modeの設定
+(use-package org
+  :if (not (eq system-type 'windows-nt))
+  :custom
+  (org-agenda-files (list "~/Org"
+                          "~/Org/journal"))
+  (org-refile-targets '((org-agenda-files :maxlevel . 3)))
+  (org-todo-keywords
+   '((sequence "TODO(t)" "SOMEDAY(s)" "PENDING(p)" "WAITING(w)" "|" "DONE(d)" "GIVEUP(u)")))
+  )
+
+(use-package deft
+  :after org
+  :bind
+  ("C-c n d" . deft)
+  :custom
+  (deft-recursive t)
+  (deft-use-filter-string-for-filename t)
+  (deft-default-extension "org")
+  (deft-directory org-roam-directory))
+
+(use-package org-journal
+  :after org
+  :defer t
+  :custom
+  (org-journal-dir "~/Org/journal")
+  (org-journal-date-format "%Y-%m-%d %A")
+  (org-journal-time-format "%m/%d %R")
+  (org-journal-carryover-items "TODO=\"TODO\"|TODO=\"PENDING\"|TODO=\"SOMEDAY\"|TODO=\"WAITING\"")
+  (org-journal-file-format "%Y/%m/%Y%m%d.org")
+  :bind
+  ("C-c C-j" . org-journal-new-entry)
+  )
+
+(use-package org-roam
+  :after org
+  :defer t
+  ;:hook
+  ;(after-init . org-roam-mode)
+  :custom
+  (org-roam-db-update-method 'immediate)
+  (org-roam-db-location "~/.emacs.d/org-roam.db")
+  (org-roam-directory "~/Org/org-roam/")
+  (org-roam-index-file "~/Org/org-roam/index.org")
+  :bind (:map org-roam-mode-map
+              (("C-c n l" . org-roam)
+               ("C-c n f" . org-roam-find-file)
+               ("C-c n g" . org-roam-graph))
+              :map org-mode-map
+              (("C-c n i" . org-roam-insert))
+              (("C-c n I" . org-roam-insert-immediate)))
+  )
+
 (use-package elscreen
   :config
   (setq elscreen-prefix-key (kbd "C-z"))
