@@ -112,16 +112,29 @@
   )
 
 (use-package counsel)
+(use-package ddskk
+  :commands skk-mode
+  :init
+  (setq default-input-method "japanese-skk")
+  :config
+  (prefer-coding-system 'utf-8)
+  (require 'skk-autoloads)
+  (setq skk-server-host "localhost")
+  (setq skk-server-port 1178)
+  (setq skk-search-prog-list
+	'((skk-search-server skk-server-host skk-server-port)
+	  (skk-search-jisyo-file skk-jisyo 0)))
+  )
 
 (use-package powerline)
 (use-package moe-theme
   :config
   (moe-dark)
   (powerline-moe-theme)
-  (setq moe-theme-select-color 'cyan)
   (set-face-foreground 'font-lock-comment-face "pink")
+  :custom
+  (moe-theme-select-color 'cyan)
   )
-
 
 
 ;; バックアプファイルを無効
