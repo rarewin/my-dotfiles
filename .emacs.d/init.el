@@ -87,21 +87,21 @@
 
 (use-package org-roam
   :after org
-  :defer t
-  ;:hook
-  ;(after-init . org-roam-mode)
   :custom
-  (org-roam-db-update-method 'immediate)
-  (org-roam-db-location "~/.emacs.d/org-roam.db")
-  (org-roam-directory "~/Org/org-roam/")
-  (org-roam-index-file "~/Org/org-roam/index.org")
-  :bind (:map org-roam-mode-map
-              (("C-c n l" . org-roam)
-               ("C-c n f" . org-roam-find-file)
-               ("C-c n g" . org-roam-graph))
-              :map org-mode-map
-              (("C-c n i" . org-roam-insert))
-              (("C-c n I" . org-roam-insert-immediate)))
+  (org-roam-directory (file-truename "~/Org/roam"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  ;; If you're using a vertical completion framework, you might want a more informative completion interface
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode)
+  ;; If using org-roam-protocol
+  ; (require 'org-roam-protocol)
   )
 
 (use-package elscreen
