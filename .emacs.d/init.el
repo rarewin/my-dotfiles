@@ -88,15 +88,14 @@
 (use-package org-roam
   :after org
   :defer t
-  ;:hook
-  ;(after-init . org-roam-mode)
   :custom
+  (org-roam-v2-ack t)
   (org-roam-db-update-method 'immediate)
   (org-roam-db-location "~/.emacs.d/org-roam.db")
   (org-roam-directory "~/Org/org-roam/")
   (org-roam-index-file "~/Org/org-roam/index.org")
   :bind (:map org-roam-mode-map
-              (("C-c n l" . org-roam)
+              (("C-c n l" . org-roam-buffer-toggle)
                ("C-c n f" . org-roam-find-file)
                ("C-c n g" . org-roam-graph))
               :map org-mode-map
