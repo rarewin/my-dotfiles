@@ -45,10 +45,12 @@
         company-backends '(company-capf))
   :bind
   (:map company-active-map
-	      ("C-n". company-select-next)
-	      ("C-p". company-select-previous)
-	      ("M-<". company-select-first)
-	      ("M->". company-select-last))
+	      ("C-n" . company-select-next)
+	      ("C-p" . company-select-previous)
+	      ("M-<" . company-select-first)
+	      ("M->" . company-select-last)
+	      ("C-h" . delete-backward-char)
+	      )
   )
 
 ;; org-modeの設定
@@ -63,7 +65,7 @@
   )
 
 (use-package deft
-  :after org
+  :after org-roam
   :bind
   ("C-c n d" . deft)
   :custom
@@ -83,6 +85,7 @@
   (org-journal-file-format "%Y/%m/%Y%m%d.org")
   :bind
   ("C-c C-j" . org-journal-new-entry)
+  ("C-c C-o" . org-journal-open-current-journal-file)
   )
 
 (use-package org-roam
@@ -158,7 +161,7 @@
 (transient-mark-mode t)
 
 ;; 折り返さない
-(setq truncate-lines t)
+(setq default-truncate-lines t)
 
 ;; make C-a lovely
 (define-key global-map "\C-a"
@@ -170,3 +173,20 @@
 
 
 (global-display-line-numbers-mode 1)
+
+;; WSLでWindowsのclip.exeを使ってクリップボードにコピー
+(defun wsl-copy (text &optional push)
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "iconv -t utf16 | clip.exe" "*Messages*" "clip.exe")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
+
+; powershell経由でWindowsのクリップボードからペースト
+(defun wsl-paste ()
+  (let ((coding-system-for-read 'utf-8))
+    (shell-command-to-string "powershell.exe -Command 'Get-Clipboard'")))
+
+(setq interprogram-cut-function 'wsl-copy)
+; (setq interprogram-paste-function 'wsl-paste) ; 遅いので無効
+
+(server-start)
