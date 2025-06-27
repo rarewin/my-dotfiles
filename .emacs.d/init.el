@@ -175,7 +175,9 @@
 (transient-mark-mode t)
 
 ;; 折り返さない
-(setq default-truncate-lines t)
+(setq-default truncate-lines t)
+(setq truncate-partial-width-windows nil)
+
 
 ;; make C-a lovely
 (define-key global-map "\C-a"
