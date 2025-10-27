@@ -1,0 +1,24 @@
+[font]
+size = 10.0
+
+[font.bold]
+family = "monospace"
+style = "Bold"
+
+[font.bold_italic]
+family = "monospace"
+style = "Bold Italic"
+
+[font.italic]
+family = "monospace"
+style = "Italic"
+
+[font.normal]
+family = "monospace"
+style = "Regular"
+
+[window]
+opacity = 0.9
+
+[colors]
+transparent_background_colors = true
