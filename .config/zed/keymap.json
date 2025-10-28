@@ -53,5 +53,29 @@
     "bindings": {
       "ctrl-p": null
     }
+  },
+  {
+    "context": "(Editor && editor_agent_diff)",
+    "bindings": {
+      "ctrl-y": null
+    }
+  },
+  {
+    "context": "AgentDiff",
+    "bindings": {
+      "ctrl-y": null
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-y": "editor::Paste"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-j": null
+    }
   }
 ]
