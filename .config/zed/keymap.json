@@ -25,6 +25,15 @@
     }
   },
   {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-a": ["editor::MoveToBeginningOfLine", {
+        "stop_at_soft_wraps": true,
+        "stop_at_indent": true
+      }]
+    }
+  },
+  {
     "context": "Workspace",
     "bindings": {
       "ctrl-n": null
